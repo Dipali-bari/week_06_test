@@ -1,23 +1,28 @@
 import logo from './logo.svg';
 import './App.css';
-
+import Header from './components/Header';
+import { BrowserRouter as Router, Routes, Route} from 'react-router-dom';
+import Home from './components/Home';
+import Contact from './components/Contact';
+import Service from './components/Service';
+import {useSelector, useDispatch} from 'react-redux';
+import { toggleDarkMode } from './features/darkModeSlice';
 function App() {
+  const {mode} = useSelector((state)=>state.darkMode);
+  const dispatch= useDispatch();
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div style={{background: mode? 'black': 'white', color:mode? 'white':'blue', height:"80vh"}}>
+      
+    <Router>
+      <Header/>
+      <button onClick={()=>dispatch(toggleDarkMode())}>Change the theam</button>
+      <Routes>
+      <Route path='/' element={<Home/>}/>
+        <Route path='/contact' element={<Contact/>}/>
+        <Route path='/service' element={<Service/>}/>
+      </Routes>
+
+    </Router>
     </div>
   );
 }
