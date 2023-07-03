@@ -14,7 +14,7 @@ function App() {
     <div style={{background: mode? 'black': 'white', color:mode? 'white':'blue', height:"80vh"}}>
       
     <Router>
-      <h3>Change Theme Project</h3>
+      <h2>Change Theme Project</h2>
       <Header/>
       <button onClick={()=>dispatch(toggleDarkMode())}>Change the theam</button>
       <Routes>
